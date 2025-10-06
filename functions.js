@@ -18,38 +18,52 @@ const existingBRs = [
 const existingTiers = ["I","II","III","IV","V","VI","VII"];
 
 const brImages = {
-  "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",   // directe link naar Miku-afbeelding
-  "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a"  // directe link naar Minsu
+  "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",
+  "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a"
 };
 
+// Bouw BR lijst met afbeelding onder de optie
 function generateBRList() {
   existingBRs.forEach(br => {
     const label = document.createElement("label");
-    label.style.display = "flex";      
-    label.style.alignItems = "center"; 
-    label.style.gap = "5px";           
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.justifyContent = "center";
+    label.style.position = "relative";
+    label.style.width = "75px";     // breedte van optie
+    label.style.height = "75px";    // hoogte van optie
+    label.style.margin = "5px";
+    label.style.border = "1px solid #ccc";
+    label.style.borderRadius = "8px";
+    label.style.backgroundSize = "cover";      // afbeelding vullen
+    label.style.backgroundPosition = "center";
+    label.style.color = "#fff";                // tekstkleur
+    label.style.fontWeight = "bold";
+    label.style.cursor = "pointer";
+    label.style.overflow = "hidden";
+    
+    if (brImages[br]) {
+      label.style.backgroundImage = `url(${brImages[br]})`;
+    } else {
+      label.style.backgroundColor = "#444";  // fallback kleur voor opties zonder afbeelding
+    }
 
     const input = document.createElement("input");
     input.type = "checkbox";
     input.value = br;
+    input.style.position = "absolute"; // checkbox verbergen of positioneren
+    input.style.top = "5px";
+    input.style.left = "5px";
     label.appendChild(input);
 
-    const textNode = document.createTextNode(br);
+    const textNode = document.createElement("span");
+    textNode.textContent = br;
     label.appendChild(textNode);
-
-    // Voeg afbeelding toe als deze BR een mapping heeft
-    if (brImages[br]) {
-      const img = document.createElement("img");
-      img.src = brImages[br];
-      img.alt = `BR ${br} image`;
-      img.style.maxWidth = "40px";      
-      img.style.height = "auto";
-      label.appendChild(img);
-    }
 
     brList.appendChild(label);
   });
 }
+
 generateBRList();
 
 function generateTierList() {
@@ -72,6 +86,7 @@ function generateTierList() {
 }
 generateTierList();
 
+// Toggle tussen BR en Tier sectie
 document.querySelectorAll('input[name="mode"]').forEach(radio => {
   radio.addEventListener("change", () => {
     if (radio.value === "br") {
@@ -84,18 +99,22 @@ document.querySelectorAll('input[name="mode"]').forEach(radio => {
   });
 });
 
+// Selecteer alle landen
 document.getElementById("selectAllCountries").addEventListener("click", () => {
   document.querySelectorAll("#countries input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
+// Selecteer alle BR's
 document.getElementById("selectAllBRs").addEventListener("click", () => {
   document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
+// Selecteer alle Tiers
 document.getElementById("selectAllTiers").addEventListener("click", () => {
   document.querySelectorAll("#tier-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
+// Randomizer functionaliteit
 randomizeBtn.addEventListener("click", () => {
   const selectedCountries = Array.from(document.querySelectorAll("#countries input:checked"))
     .map(cb => cb.value);
