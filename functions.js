@@ -7,7 +7,6 @@ const tierSection = document.getElementById("tier-section");
 const brList = document.getElementById("br-list");
 const tierList = document.getElementById("tier-list");
 
-// Alle bestaande BR's in War Thunder
 const existingBRs = [
   "1.0","1.3","1.7","2.0","2.3","2.7","3.0","3.3","3.7",
   "4.0","4.3","4.7","5.0","5.3","5.7","6.0","6.3","6.7",
@@ -16,10 +15,8 @@ const existingBRs = [
   "12.7","13.0","13.3","13.7","14.0"
 ];
 
-// Alle tiers
 const existingTiers = ["I","II","III","IV","V","VI","VII"];
 
-// Bouw BR lijst
 function generateBRList() {
   existingBRs.forEach(br => {
     const label = document.createElement("label");
@@ -33,7 +30,6 @@ function generateBRList() {
 }
 generateBRList();
 
-// Bouw Tier lijst
 function generateTierList() {
   existingTiers.forEach(tier => {
     const label = document.createElement("label");
@@ -47,7 +43,6 @@ function generateTierList() {
 }
 generateTierList();
 
-// Toggle tussen BR en Tier sectie
 document.querySelectorAll('input[name="mode"]').forEach(radio => {
   radio.addEventListener("change", () => {
     if (radio.value === "br") {
@@ -60,12 +55,10 @@ document.querySelectorAll('input[name="mode"]').forEach(radio => {
   });
 });
 
-// Selecteer alle landen
 document.getElementById("selectAllCountries").addEventListener("click", () => {
   document.querySelectorAll("#countries input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
-// Selecteer alle BR's
 document.getElementById("selectAllBRs").addEventListener("click", () => {
   document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
@@ -75,7 +68,6 @@ document.getElementById("selectAllTiers").addEventListener("click", () => {
   document.querySelectorAll("#tier-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
-// Randomizer functionaliteit
 randomizeBtn.addEventListener("click", () => {
   const selectedCountries = Array.from(document.querySelectorAll("#countries input:checked"))
     .map(cb => cb.value);
