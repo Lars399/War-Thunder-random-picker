@@ -18,8 +18,12 @@ const existingBRs = [
 const existingTiers = ["I","II","III","IV","V","VI","VII"];
 
 const brImages = {
+  "1.0": "https://i.pinimg.com/236x/60/14/1d/60141dc36be633ba9a68b9c3ebbdd8b8.jpg",
+  "1.3": "https://i1.sndcdn.com/artworks-77rpD29t5eHtO52x-jdS1dA-t500x500.png",
+  "1.7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS05dTDFAU8TX0AlNIWf3f5TIl8AnWnIQWAjQ&s",
   "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",
-  "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a"
+  "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a",
+  
 };
 
 // Bouw BR lijst met afbeelding onder de optie
