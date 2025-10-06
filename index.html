@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Thunder Randomizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>War Thunder Randomizer</h1>
+
+    <div class="section">
+      <h2>Kies landen</h2>
+      <button id="selectAllCountries" class="btn small">Selecteer alle landen</button>
+      <div id="countries">
+        <label><input type="checkbox" value="USA"> USA</label>
+        <label><input type="checkbox" value="Germany"> Duitsland</label>
+        <label><input type="checkbox" value="USSR"> USSR</label>
+        <label><input type="checkbox" value="UK"> UK</label>
+        <label><input type="checkbox" value="Japan"> Japan</label>
+        <label><input type="checkbox" value="Italy"> Italië</label>
+        <label><input type="checkbox" value="France"> Frankrijk</label>
+        <label><input type="checkbox" value="Sweden"> Zweden</label>
+        <label><input type="checkbox" value="China"> China</label>
+        <label><input type="checkbox" value="Israel"> Israël</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Mode</h2>
+      <label><input type="radio" name="mode" value="br" checked> BR</label>
+      <label><input type="radio" name="mode" value="tier"> Tier</label>
+    </div>
+
+    <div id="br-section" class="section">
+      <h2>Selecteer BR’s</h2>
+      <button id="selectAllBRs" class="btn small">Selecteer alle BR’s</button>
+      <div id="br-list" class="checkbox-grid"></div>
+    </div>
+
+    <div id="tier-section" class="section hidden">
+      <h2>Selecteer Tiers</h2>
+      <button id="selectAllTiers" class="btn small">Selecteer alle Tiers</button>
+      <div id="tier-list" class="checkbox-grid"></div>
+    </div>
+
+    <button id="randomizeBtn" class="btn">🎲 Randomize</button>
+
+    <div id="result" class="result hidden">
+      <h2>Resultaat</h2>
+      <p id="output"></p>
+    </div>
+  </div>
+
+  <script src="functions.js"></script>
+</body>
+</html>
