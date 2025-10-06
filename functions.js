@@ -17,14 +17,36 @@ const existingBRs = [
 
 const existingTiers = ["I","II","III","IV","V","VI","VII"];
 
+const brImages = {
+  "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",   // directe link naar Miku-afbeelding
+  "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a"  // directe link naar Minsu
+};
+
 function generateBRList() {
   existingBRs.forEach(br => {
     const label = document.createElement("label");
+    label.style.display = "flex";      
+    label.style.alignItems = "center"; 
+    label.style.gap = "5px";           
+
     const input = document.createElement("input");
     input.type = "checkbox";
     input.value = br;
     label.appendChild(input);
-    label.appendChild(document.createTextNode(br));
+
+    const textNode = document.createTextNode(br);
+    label.appendChild(textNode);
+
+    // Voeg afbeelding toe als deze BR een mapping heeft
+    if (brImages[br]) {
+      const img = document.createElement("img");
+      img.src = brImages[br];
+      img.alt = `BR ${br} image`;
+      img.style.maxWidth = "40px";      
+      img.style.height = "auto";
+      label.appendChild(img);
+    }
+
     brList.appendChild(label);
   });
 }
@@ -33,11 +55,18 @@ generateBRList();
 function generateTierList() {
   existingTiers.forEach(tier => {
     const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "5px";
+
     const input = document.createElement("input");
     input.type = "checkbox";
     input.value = tier;
     label.appendChild(input);
-    label.appendChild(document.createTextNode(tier));
+
+    const textNode = document.createTextNode(tier);
+    label.appendChild(textNode);
+
     tierList.appendChild(label);
   });
 }
@@ -63,7 +92,6 @@ document.getElementById("selectAllBRs").addEventListener("click", () => {
   document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
-// Selecteer alle Tiers
 document.getElementById("selectAllTiers").addEventListener("click", () => {
   document.querySelectorAll("#tier-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
@@ -93,6 +121,13 @@ randomizeBtn.addEventListener("click", () => {
 
     const randomBR = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
     resultText = `${country} @ BR ${randomBR}`;
+
+    if (brImages[randomBR]) {
+      output.innerHTML = `${resultText}<br><img src="${brImages[randomBR]}" alt="BR image" style="max-width:200px; margin-top:10px;">`;
+    } else {
+      output.textContent = resultText;
+    }
+
   } else {
     const selectedTiers = Array.from(document.querySelectorAll("#tier-list input:checked"))
       .map(cb => cb.value);
@@ -104,8 +139,8 @@ randomizeBtn.addEventListener("click", () => {
 
     const randomTier = selectedTiers[Math.floor(Math.random() * selectedTiers.length)];
     resultText = `${country} @ Tier ${randomTier}`;
+    output.textContent = resultText;
   }
 
-  output.textContent = resultText;
   resultDiv.classList.remove("hidden");
 });
