@@ -20,14 +20,14 @@ const existingTiers = ["I","II","III","IV","V","VI","VII"];
 const brImages = {
   "1.0": "https://i.pinimg.com/236x/60/14/1d/60141dc36be633ba9a68b9c3ebbdd8b8.jpg",
   "1.3": "https://i1.sndcdn.com/artworks-77rpD29t5eHtO52x-jdS1dA-t500x500.png",
-  "1.7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS05dTDFAU8TX0AlNIWf3f5TIl8AnWnIQWAjQ&s",
+  "1.7": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Logo_NAC_Breda.svg",
   "2.0": "https://ella.janitorai.com/bot-avatars/RXyJzcb68ZIkqolG5-fIM.webp?width=1200",
   "2.3": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQilBVcQxHaPCoSga9Xsvh1I3YKicXLyTBm6xJEVcpExXO1kmTQrPpSe5uMilScxfRXUTY&usqp=CAU",
   "2.7": "https://res.cloudinary.com/nassau-candy/image/upload/c_fit,w_300,h_300,f_auto/v1741201760/55611.jpg",
   "3.0": "https://images.vrt.be/vrtnws_web/2025/01/21/77db9cfd-eec0-4d61-8497-9ca83c8f9a28.jpg?width=900&height=506",
   "3.3": "https://media.discordapp.net/attachments/1348379245197656255/1424770591285706982/1747940731986-2d46e605-ff70-4a3c-b967-39f26a7e6f50.png?ex=68e52883&is=68e3d703&hm=ad4d069fc812e55c5cc26ce1379da8610252be9a34d93c44f0e1d5cdf3b571bc&=&format=webp&quality=lossless",
   "3.7": "",
-  "4.0": "",
+  "4.0": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3yKtgAjSJLbL9v4j7nKiTfz9oKEMEv5XN6PqSfKbzhe2-X3JY4M9BMliCucObXwML_Q&usqp=CAU",
   "4.3": "",
   "4.7": "",
   "5.0": "https://media.discordapp.net/attachments/1348379245197656255/1424769158276448326/Screen_Shot_2021-10-31_at_11.49.31_AM.webp?ex=68e5272e&is=68e3d5ae&hm=8c9ecab795e976426b380f26609ed6aba811431a03d30852ccc2dc33b57bd230&=&format=webp",
@@ -53,10 +53,10 @@ const brImages = {
   "11.7": "",
   "12.0": "",
   "12.3": "",
-  "12.7": "",
+  "12.7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS05dTDFAU8TX0AlNIWf3f5TIl8AnWnIQWAjQ&s",
   "13.0": "https://typesetbrooklyn.com/_next/image?url=https%3A%2F%2Fsocial-chuckwalla.transforms.svdcdn.com%2Fproduction%2FLabubu.jpg%3Fw%3D4000%26h%3D4000%26q%3D100%26auto%3Dformat%26fit%3Dmin%26dm%3D1749653239%26s%3D1c41fd2676084aafb529a91b041086bc&w=3840&q=75",
   "13.3": "",
-  "13.7": "",
+  "13.7": "https://pbs.twimg.com/media/GhSDTF4W4AAHsNV.jpg",
   "14.0": "https://media.tenor.com/KfL05fPVK-4AAAAe/war-vietnam.png"
 };
 
