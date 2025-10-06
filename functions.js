@@ -77,177 +77,208 @@ document.addEventListener("DOMContentLoaded", () => {
   "14.0": "https://media.tenor.com/KfL05fPVK-4AAAAe/war-vietnam.png"
 };
 
-  // ====== LANDEN ACHTERGROND ======
-  function styleCountries() {
-    countriesDiv.querySelectorAll("label").forEach(label => {
-      const input = label.querySelector("input");
-      const country = input.value;
+// ====== LANDEN ACHTERGROND ======
+function styleCountries() {
+  countriesDiv.querySelectorAll("label").forEach(label => {
+    const input = label.querySelector("input");
+    const country = input.value;
 
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.justifyContent = "center";
-      label.style.position = "relative";
-      label.style.width = "90px";
-      label.style.height = "75px";
-      label.style.margin = "5px";
-      label.style.border = "1px solid #ccc";
-      label.style.borderRadius = "8px";
-      label.style.backgroundSize = "cover";
-      label.style.backgroundPosition = "center";
-      label.style.color = "#FFD700";
-      label.style.textShadow = "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000";
-      label.style.fontWeight = "bold";
-      label.style.cursor = "pointer";
-      label.style.overflow = "hidden";
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.justifyContent = "center";
+    label.style.position = "relative";
+    label.style.width = "90px";
+    label.style.height = "75px";
+    label.style.margin = "5px";
+    label.style.border = "1px solid #000"; // zwarte rand
+    label.style.borderRadius = "8px";
+    label.style.backgroundSize = "cover";
+    label.style.backgroundPosition = "center";
+    label.style.color = "#FFD700";
+    label.style.textShadow = "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000";
+    label.style.fontWeight = "bold";
+    label.style.cursor = "pointer";
+    label.style.overflow = "hidden";
 
-      if (countryImages[country]) {
-        label.style.backgroundImage = `url(${countryImages[country]})`;
-      } else {
-        label.style.backgroundColor = "#444";
-      }
+    if (countryImages[country]) {
+      label.style.backgroundImage = `url(${countryImages[country]})`;
+    } else {
+      label.style.backgroundColor = "#444";
+    }
 
-      input.style.position = "absolute";
-      input.style.top = "5px";
-      input.style.left = "5px";
-    });
+    input.style.position = "absolute";
+    input.style.top = "5px";
+    input.style.left = "5px";
+  });
+}
+
+// ====== BR-LIJST GENEREREN ======
+function generateBRList() {
+  brList.innerHTML = ""; // leegmaken eerst
+  existingBRs.forEach(br => {
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.justifyContent = "center";
+    label.style.position = "relative";
+    label.style.width = "75px";
+    label.style.height = "75px";
+    label.style.margin = "5px";
+    label.style.border = "1px solid #000"; // zwarte rand
+    label.style.borderRadius = "8px";
+    label.style.backgroundSize = "cover";
+    label.style.backgroundPosition = "center";
+    label.style.color = "#FFD700";
+    label.style.textShadow = "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000";
+    label.style.fontWeight = "bold";
+    label.style.cursor = "pointer";
+    label.style.overflow = "hidden";
+
+    if (brImages[br]) {
+      label.style.backgroundImage = `url(${brImages[br]})`;
+    } else {
+      label.style.backgroundColor = "#444";
+    }
+
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = br;
+    input.style.position = "absolute";
+    input.style.top = "5px";
+    input.style.left = "5px";
+    label.appendChild(input);
+
+    const textNode = document.createElement("span");
+    textNode.textContent = br;
+    label.appendChild(textNode);
+
+    brList.appendChild(label);
+  });
+}
+
+// ====== TIERS GENEREREN ======
+function generateTierList() {
+  tierList.innerHTML = "";
+  existingTiers.forEach(tier => {
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "5px";
+
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = tier;
+    label.appendChild(input);
+
+    const textNode = document.createTextNode(tier);
+    label.appendChild(textNode);
+
+    tierList.appendChild(label);
+  });
+}
+
+// ====== MODUS SCHAKELAAR ======
+document.querySelectorAll('input[name="mode"]').forEach(radio => {
+  radio.addEventListener("change", () => {
+    if (radio.value === "br") {
+      brSection.classList.remove("hidden");
+      tierSection.classList.add("hidden");
+    } else {
+      tierSection.classList.remove("hidden");
+      brSection.classList.add("hidden");
+    }
+  });
+});
+
+// ====== SELECTEER KNOPPEN ======
+document.getElementById("selectAllCountries").addEventListener("click", () => {
+  document.querySelectorAll("#countries input[type=checkbox]").forEach(cb => cb.checked = true);
+});
+
+document.getElementById("selectAllBRs").addEventListener("click", () => {
+  document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = true);
+});
+
+document.getElementById("selectAllTiers").addEventListener("click", () => {
+  document.querySelectorAll("#tier-list input[type=checkbox]").forEach(cb => cb.checked = true);
+});
+
+// ====== RANDOMIZER ======
+randomizeBtn.addEventListener("click", () => {
+  const selectedCountries = Array.from(document.querySelectorAll("#countries input:checked")).map(cb => cb.value);
+  if (selectedCountries.length === 0) {
+    alert("Selecteer minstens één land!");
+    return;
   }
 
-  // ====== BR-LIJST GENEREREN ======
-  function generateBRList() {
-    brList.innerHTML = ""; // leegmaken eerst
-    existingBRs.forEach(br => {
-      const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.justifyContent = "center";
-      label.style.position = "relative";
-      label.style.width = "75px";
-      label.style.height = "75px";
-      label.style.margin = "5px";
-      label.style.border = "1px solid #ccc";
-      label.style.borderRadius = "8px";
-      label.style.backgroundSize = "cover";
-      label.style.backgroundPosition = "center";
-      label.style.color = "#FFD700";
-      label.style.textShadow = "1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000";
-      label.style.fontWeight = "bold";
-      label.style.cursor = "pointer";
-      label.style.overflow = "hidden";
+  const mode = document.querySelector('input[name="mode"]:checked').value;
+  const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
+  let resultText = "";
 
-      if (brImages[br]) {
-        label.style.backgroundImage = `url(${brImages[br]})`;
-      } else {
-        label.style.backgroundColor = "#444";
-      }
-
-      const input = document.createElement("input");
-      input.type = "checkbox";
-      input.value = br;
-      input.style.position = "absolute";
-      input.style.top = "5px";
-      input.style.left = "5px";
-      label.appendChild(input);
-
-      const textNode = document.createElement("span");
-      textNode.textContent = br;
-      label.appendChild(textNode);
-
-      brList.appendChild(label);
-    });
-  }
-
-  // ====== TIERS GENEREREN ======
-  function generateTierList() {
-    tierList.innerHTML = "";
-    existingTiers.forEach(tier => {
-      const label = document.createElement("label");
-      label.style.display = "flex";
-      label.style.alignItems = "center";
-      label.style.gap = "5px";
-
-      const input = document.createElement("input");
-      input.type = "checkbox";
-      input.value = tier;
-      label.appendChild(input);
-
-      const textNode = document.createTextNode(tier);
-      label.appendChild(textNode);
-
-      tierList.appendChild(label);
-    });
-  }
-
-  // ====== MODUS SCHAKELAAR ======
-  document.querySelectorAll('input[name="mode"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-      if (radio.value === "br") {
-        brSection.classList.remove("hidden");
-        tierSection.classList.add("hidden");
-      } else {
-        tierSection.classList.remove("hidden");
-        brSection.classList.add("hidden");
-      }
-    });
-  });
-
-  // ====== SELECTEER KNOPPEN ======
-  document.getElementById("selectAllCountries").addEventListener("click", () => {
-    document.querySelectorAll("#countries input[type=checkbox]").forEach(cb => cb.checked = true);
-  });
-
-  document.getElementById("selectAllBRs").addEventListener("click", () => {
-    document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = true);
-  });
-
-  document.getElementById("selectAllTiers").addEventListener("click", () => {
-    document.querySelectorAll("#tier-list input[type=checkbox]").forEach(cb => cb.checked = true);
-  });
-
-  // ====== RANDOMIZER ======
-  randomizeBtn.addEventListener("click", () => {
-    const selectedCountries = Array.from(document.querySelectorAll("#countries input:checked")).map(cb => cb.value);
-    if (selectedCountries.length === 0) {
-      alert("Selecteer minstens één land!");
+  if (mode === "br") {
+    const selectedBRs = Array.from(document.querySelectorAll("#br-list input:checked")).map(cb => cb.value);
+    if (selectedBRs.length === 0) {
+      alert("Selecteer minstens één BR!");
       return;
     }
 
-    const mode = document.querySelector('input[name="mode"]:checked').value;
-    const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
-    let resultText = "";
+    const randomBR = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+    resultText = `${country} @ BR ${randomBR}`;
 
-    if (mode === "br") {
-      const selectedBRs = Array.from(document.querySelectorAll("#br-list input:checked")).map(cb => cb.value);
-      if (selectedBRs.length === 0) {
-        alert("Selecteer minstens één BR!");
-        return;
-      }
+    // Toon land als achtergrond en BR + tekst in het midden
+    output.innerHTML = `
+      <div style="
+        position: relative;
+        width: 100%;
+        height: 300px;
+        background-image: url('${countryImages[country]}');
+        background-size: contain;         /* hele afbeelding zichtbaar, niet uitgerekt */
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 2px solid #000;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      ">
+        <!-- optionele overlay om contrast te verbeteren -->
+        <div style="
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background-color: rgba(0,0,0,0.2);
+          border-radius: 8px;
+        "></div>
 
-      const randomBR = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
-      resultText = `${country} @ BR ${randomBR}`;
-
-      if (brImages[randomBR]) {
-        output.innerHTML = `${resultText}<br><img src="${brImages[randomBR]}" alt="BR image" style="max-width:200px; margin-top:10px;">`;
-      } else {
-        output.textContent = resultText;
-      }
-
-    } else {
-      const selectedTiers = Array.from(document.querySelectorAll("#tier-list input:checked")).map(cb => cb.value);
-      if (selectedTiers.length === 0) {
-        alert("Selecteer minstens één Tier!");
-        return;
-      }
-
-      const randomTier = selectedTiers[Math.floor(Math.random() * selectedTiers.length)];
-      resultText = `${country} @ Tier ${randomTier}`;
-      output.textContent = resultText;
+        <!-- BR + tekst -->
+        <div style="
+          position: relative;
+          text-align: center;
+          color: #FFD700;
+          text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+        ">
+          <span style="font-weight: bold; font-size: 1.5em;">${resultText}</span><br>
+          ${brImages[randomBR] ? `<img src="${brImages[randomBR]}" alt="BR image" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px; margin-top:10px;">` : ""}
+        </div>
+      </div>
+    `;
+  } else {
+    const selectedTiers = Array.from(document.querySelectorAll("#tier-list input:checked")).map(cb => cb.value);
+    if (selectedTiers.length === 0) {
+      alert("Selecteer minstens één Tier!");
+      return;
     }
 
-    resultDiv.classList.remove("hidden");
-  });
+    const randomTier = selectedTiers[Math.floor(Math.random() * selectedTiers.length)];
+    resultText = `${country} @ Tier ${randomTier}`;
+    output.textContent = resultText;
+  }
 
-  // ====== INIT ======
-  styleCountries();
-  generateBRList();
-  generateTierList();
+  resultDiv.classList.remove("hidden");
+});
+
+// ====== INIT ======
+styleCountries();
+generateBRList();
+generateTierList();
+
 });
