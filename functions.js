@@ -23,7 +23,8 @@ const brImages = {
   "1.7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS05dTDFAU8TX0AlNIWf3f5TIl8AnWnIQWAjQ&s",
   "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",
   "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a",
-  
+  "8.0": "https://content.imageresizer.com/images/memes/Vietnam-meme-3.jpg",
+  "14.0": "https://media.tenor.com/KfL05fPVK-4AAAAe/war-vietnam.png"
 };
 
 // Bouw BR lijst met afbeelding onder de optie
