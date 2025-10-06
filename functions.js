@@ -22,11 +22,14 @@ const brImages = {
   "1.3": "https://i1.sndcdn.com/artworks-77rpD29t5eHtO52x-jdS1dA-t500x500.png",
   "1.7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS05dTDFAU8TX0AlNIWf3f5TIl8AnWnIQWAjQ&s",
   "2.0": "https://ella.janitorai.com/bot-avatars/RXyJzcb68ZIkqolG5-fIM.webp?width=1200",
+  "2.3": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQilBVcQxHaPCoSga9Xsvh1I3YKicXLyTBm6xJEVcpExXO1kmTQrPpSe5uMilScxfRXUTY&usqp=CAU",
   "5.7": "https://i.pinimg.com/236x/a9/d4/0b/a9d40b8416ddb89e76004fc2bb659f66.jpg",
   "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",
+  "6.7": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Nazi_Germany_%28with_Iron_Cross%29.png",
   "7.0": "https://preview.redd.it/what-if-minsu-came-v0-w6ch3f4gy8kf1.jpeg?width=1284&auto=webp&s=e3a6a460e66ce7cdb1b96e6716aaccf72baa9e4a",
   "7.7": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh7Y5BnPP0BppiXxMhhCM3DL1MznfiaeDrxBYxhH2j-eH1ScuTbeYHIaC3LVBeT1_KxJE&usqp=CAU",
   "8.0": "https://content.imageresizer.com/images/memes/Vietnam-meme-3.jpg",
+  "10.7": "https://i.redd.it/some-silly-pics-of-miku-and-her-tank-v0-m1u52gaujhnd1.jpg?width=4624&format=pjpg&auto=webp&s=6905eafb05c8012d9c0e0dfc061bedea3b8454b4",
   "14.0": "https://media.tenor.com/KfL05fPVK-4AAAAe/war-vietnam.png"
 };
 
@@ -45,7 +48,7 @@ function generateBRList() {
     label.style.borderRadius = "8px";
     label.style.backgroundSize = "cover";      // afbeelding vullen
     label.style.backgroundPosition = "center";
-    label.style.color = "#fff";                // tekstkleur
+    label.style.color = "#FFD700";                // tekstkleur
     label.style.fontWeight = "bold";
     label.style.cursor = "pointer";
     label.style.overflow = "hidden";
