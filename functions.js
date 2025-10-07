@@ -215,53 +215,61 @@ randomizeBtn.addEventListener("click", () => {
   const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
   let resultText = "";
 
-  if (mode === "br") {
-    const selectedBRs = Array.from(document.querySelectorAll("#br-list input:checked")).map(cb => cb.value);
-    if (selectedBRs.length === 0) {
-      alert("Selecteer minstens één BR!");
-      return;
-    }
+  
+if (mode === "br") {
+  const selectedBRs = Array.from(document.querySelectorAll("#br-list input:checked")).map(cb => parseFloat(cb.value));
+  if (selectedBRs.length === 0) {
+    alert("Selecteer minstens één BR!");
+    return;
+  }
 
-    const randomBR = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
-    resultText = `${country} @ BR ${randomBR}`;
+  // Kies twee willekeurige BR's
+  const randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+  const randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
 
-    // Toon land als achtergrond en BR + tekst in het midden
-    output.innerHTML = `
+  // Sorteer ze zodat de laagste eerst komt
+  const [lowBR, highBR] = [Math.min(randomBR1, randomBR2), Math.max(randomBR1, randomBR2)];
+
+  const rangeText = `${lowBR.toFixed(1)} – ${highBR.toFixed(1)}`;
+  const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
+  const resultText = `${country} @ BR ${rangeText}`;
+
+  // Toon land + BR range + afbeelding van de eerste BR
+  output.innerHTML = `
+    <div style="
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-image: url('${countryImages[country]}');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 2px solid #000;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    ">
+      <div style="
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0,0,0,0.2);
+        border-radius: 8px;
+      "></div>
+
       <div style="
         position: relative;
-        width: 100%;
-        height: 300px;
-        background-image: url('${countryImages[country]}');
-        background-size: contain;         /* hele afbeelding zichtbaar, niet uitgerekt */
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 2px solid #000;
-        border-radius: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
+        color: #FFD700;
+        text-shadow: 1px 1px 0 #000, -1px 1px 0 #000,
+                     1px -1px 0 #000, -1px -1px 0 #000;
       ">
-        <!-- optionele overlay om contrast te verbeteren -->
-        <div style="
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background-color: rgba(0,0,0,0.2);
-          border-radius: 8px;
-        "></div>
-
-        <!-- BR + tekst -->
-        <div style="
-          position: relative;
-          text-align: center;
-          color: #FFD700;
-          text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
-        ">
-          <span style="font-weight: bold; font-size: 1.5em;">${resultText}</span><br>
-          ${brImages[randomBR] ? `<img src="${brImages[randomBR]}" alt="BR image" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px; margin-top:10px;">` : ""}
-        </div>
+        <span style="font-weight: bold; font-size: 1.5em;">${resultText}</span><br>
+        ${brImages[lowBR.toFixed(1)] ? `<img src="${brImages[lowBR.toFixed(1)]}" alt="BR image" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px; margin-top:10px;">` : ""}
       </div>
-    `;
-  } else {
+    </div>
+  `;
+} else {
     const selectedTiers = Array.from(document.querySelectorAll("#tier-list input:checked")).map(cb => cb.value);
     if (selectedTiers.length === 0) {
       alert("Selecteer minstens één Tier!");
