@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   "2.3": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQilBVcQxHaPCoSga9Xsvh1I3YKicXLyTBm6xJEVcpExXO1kmTQrPpSe5uMilScxfRXUTY&usqp=CAU",
   "2.7": "https://res.cloudinary.com/nassau-candy/image/upload/c_fit,w_300,h_300,f_auto/v1741201760/55611.jpg",
   "3.0": "https://images.vrt.be/vrtnws_web/2025/01/21/77db9cfd-eec0-4d61-8497-9ca83c8f9a28.jpg?width=900&height=506",
-  "3.3": "https://media.discordapp.net/attachments/1348379245197656255/1424770591285706982/1747940731986-2d46e605-ff70-4a3c-b967-39f26a7e6f50.png?ex=68e52883&is=68e3d703&hm=ad4d069fc812e55c5cc26ce1379da8610252be9a34d93c44f0e1d5cdf3b571bc&=&format=webp&quality=lossless",
+  "3.3": "https://i.redd.it/uqs1iabx0fie1.png",
   "3.7": "https://upload.wikimedia.org/wikipedia/commons/5/5f/A_possum_and_a_movie_camera_1943.jpg",
   "4.0": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3yKtgAjSJLbL9v4j7nKiTfz9oKEMEv5XN6PqSfKbzhe2-X3JY4M9BMliCucObXwML_Q&usqp=CAU",
   "4.3": "https://external-preview.redd.it/j46xEnPedn7UZH9SVKEa-VTlTvKDTgkfj50mVNY9Z8c.jpg?auto=webp&s=6dc1bb4375b70edf1918a4b209c3735dc608a3ba",
