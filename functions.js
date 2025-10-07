@@ -234,7 +234,7 @@ if (mode === "br") {
   const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
   const resultText = `${country} @ BR ${rangeText}`;
 
-  // Toon land + BR range + afbeelding van de eerste BR
+  // Toon land + BR range + beide BR-afbeeldingen
   output.innerHTML = `
     <div style="
       position: relative;
@@ -265,7 +265,11 @@ if (mode === "br") {
                      1px -1px 0 #000, -1px -1px 0 #000;
       ">
         <span style="font-weight: bold; font-size: 1.5em;">${resultText}</span><br>
-        ${brImages[lowBR.toFixed(1)] ? `<img src="${brImages[lowBR.toFixed(1)]}" alt="BR image" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px; margin-top:10px;">` : ""}
+
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+          ${brImages[lowBR.toFixed(1)] ? `<img src="${brImages[lowBR.toFixed(1)]}" alt="BR ${lowBR}" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px;">` : ""}
+          ${brImages[highBR.toFixed(1)] ? `<img src="${brImages[highBR.toFixed(1)]}" alt="BR ${highBR}" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px;">` : ""}
+        </div>
       </div>
     </div>
   `;
