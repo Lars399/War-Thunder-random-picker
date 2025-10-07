@@ -223,18 +223,35 @@ if (mode === "br") {
     return;
   }
 
-  // Kies twee willekeurige BR's
-  const randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
-  const randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+  const brRandomMode = document.querySelector('input[name="brRandomMode"]:checked').value;
 
-  // Sorteer ze zodat de laagste eerst komt
+  let randomBR1, randomBR2;
+
+  if (brRandomMode === "random") {
+    // Volledig willekeurig: twee totaal random BR's
+    randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+    randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+  } else {
+    // Normale logica: tweede BR dicht bij de eerste
+    randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+
+    // Vind BR’s die dicht bij randomBR1 liggen (max ±0.7 verschil)
+    const closeBRs = selectedBRs.filter(br => Math.abs(br - randomBR1) <= 0.7);
+
+    if (closeBRs.length > 1) {
+      randomBR2 = closeBRs[Math.floor(Math.random() * closeBRs.length)];
+    } else {
+      // fallback als er geen dichtbij liggende BR’s zijn
+      randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+    }
+  }
+
   const [lowBR, highBR] = [Math.min(randomBR1, randomBR2), Math.max(randomBR1, randomBR2)];
-
   const rangeText = `${lowBR.toFixed(1)} – ${highBR.toFixed(1)}`;
   const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
   const resultText = `${country} @ BR ${rangeText}`;
 
-  // Toon land + BR range + beide BR-afbeeldingen
+  // Toon resultaat met beide BR-afbeeldingen
   output.innerHTML = `
     <div style="
       position: relative;
