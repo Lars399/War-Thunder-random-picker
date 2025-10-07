@@ -199,6 +199,13 @@ document.getElementById("selectAllBRs").addEventListener("click", () => {
   document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
 
+// ====== DESELECTEER KNOP ======
+document.getElementById("deselectBRs").addEventListener("click", () => {
+  document.querySelectorAll("#br-list input[type=checkbox]").forEach(cb => cb.checked = false);
+});
+
+
+
 document.getElementById("selectAllTiers").addEventListener("click", () => {
   document.querySelectorAll("#tier-list input[type=checkbox]").forEach(cb => cb.checked = true);
 });
