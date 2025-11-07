@@ -404,14 +404,48 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isPlaying && playlist[currentIndex].src) audio.play();
   });
 
-  // Auto-volgende als nummer eindigt
-  audio.addEventListener("ended", () => {
-    currentIndex = (currentIndex + 1) % playlist.length;
-    loadTrack(currentIndex);
-    if (playlist[currentIndex].src) {
-      audio.play();
-      isPlaying = true;
-      playPauseBtn.textContent = "⏸️";
-    }
-  });
+audio.addEventListener("ended", () => {
+  currentIndex = (currentIndex + 1) % playlist.length;
+  isPlaying = true; // <<< BELANGRIJK: zet eerst isPlaying op true
+  loadTrack(currentIndex);
+  audio.play();
+  playPauseBtn.textContent = "⏸️";
+});
+
+
+  // ===== MINI GAME VOOR VOLUME =====
+const movingBar = document.getElementById("moving-bar");
+const targetBar = document.getElementById("target-bar");
+const hitBtn = document.getElementById("hitBtn");
+const volumeDisplay = document.getElementById("volumeDisplay");
+
+let pos = 0;
+let direction = 1; // 1 = naar rechts, -1 = naar links
+let speed = 2; // pixels per frame
+let gameInterval = setInterval(moveBar, 20);
+
+function moveBar() {
+  pos += direction * speed;
+  if (pos <= 0 || pos >= 180) direction *= -1; // terugkaatsen aan randen
+  movingBar.style.left = pos + "px";
+}
+
+// Knop gedrukt
+hitBtn.addEventListener("click", () => {
+  const barLeft = pos;
+  const targetLeft = parseInt(targetBar.style.left);
+
+  // Controleer overlap
+  if (barLeft + 20 > targetLeft && barLeft < targetLeft + 20) {
+    // Succes! volume verhogen met 10%
+    audio.volume = Math.min(audio.volume + 0.1, 1);
+  } else {
+    // Mislukt, volume verlagen met 10%
+    audio.volume = Math.max(audio.volume - 0.1, 0);
+  }
+
+  // Update display
+  volumeDisplay.textContent = Math.round(audio.volume * 100) + "%";
+});
+
 });
