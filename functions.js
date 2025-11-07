@@ -327,3 +327,30 @@ generateBRList();
 generateTierList();
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("bgMusic");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const stopBtn = document.getElementById("stopBtn");
+
+  let isPlaying = false;
+
+  playPauseBtn.addEventListener("click", () => {
+    if (!isPlaying) {
+      audio.play();
+      isPlaying = true;
+      playPauseBtn.textContent = "⏸️";
+    } else {
+      audio.pause();
+      isPlaying = false;
+      playPauseBtn.textContent = "▶️";
+    }
+  });
+
+  stopBtn.addEventListener("click", () => {
+    audio.pause();
+    audio.currentTime = 0;
+    isPlaying = false;
+    playPauseBtn.textContent = "▶️";
+  });
+});
