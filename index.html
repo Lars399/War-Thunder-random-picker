@@ -139,12 +139,24 @@ select {
 }
 
 #volume-game {
+  position: fixed;
+  top: 90px; /* afstand onder de muziek widget */
+  right: 15px;
   background: #2b2b40;
   border: 2px solid #ff9800;
-  border-radius: 8px;
   padding: 10px;
-  width: fit-content;
-  margin: 15px auto;
+  border-radius: 10px;
+  width: 230px;
+  text-align: center;
+}
+
+#playerBlock {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 
@@ -207,32 +219,31 @@ select {
     </div>
   </div>
 
-  <audio id="bgMusic"></audio>
-
-<div id="music-player">
-  <div class="track-info">
-    <strong>Now Playing:</strong><br>
-    <div id="currentTrack">Geen nummer geselecteerd</div>
+<div id="playerBlock">
+  <div id="music-player">
+    <div class="track-info">
+      <strong>Now Playing:</strong><br>
+      <div id="currentTrack">Geen nummer geselecteerd</div>
+    </div>
+    <div class="controls">
+      <button id="playPauseBtn">▶️</button>
+      <button id="stopBtn">⏹️</button>
+      <button id="prevBtn">Vorige</button>
+      <button id="nextBtn">Volgende</button>
+    </div>
   </div>
-  <div class="controls">
-    <button id="playPauseBtn">▶️</button>
-    <button id="stopBtn">⏹️</button>
-    <button id="prevBtn">Vorige</button>
-    <button id="nextBtn">Volgende</button>
+
+  <div id="volume-game" style="margin-top: 10px; text-align: center;">
+    <strong>Mini Volume Game 🎵</strong>
+    <p>Klik op de knop als de groene balk de blauwe markering raakt!</p>
+    <div id="game-bar" style="position: relative; width: 200px; height: 20px; background: #444; margin: 0 auto; border-radius: 5px;">
+      <div id="moving-bar" style="position: absolute; left: 0; width: 20px; height: 20px; background: green;"></div>
+      <div id="target-bar" style="position: absolute; left: 90px; width: 5px; height: 20px; background: blue; opacity: 0.7;"></div>
+    </div>
+    <button id="hitBtn" style="margin-top: 5px; padding: 5px 10px;">Hit!</button>
+    <p>Huidig volume: <span id="volumeDisplay">50%</span></p>
   </div>
 </div>
-<div id="volume-game" style="margin-top: 10px; text-align: center;">
-  <strong>Mini Volume Game 🎵</strong>
-  <p>Klik op de knop als de groene balk de blauwe markering raakt!</p>
-  <div id="game-bar" style="position: relative; width: 200px; height: 20px; background: #444; margin: 0 auto; border-radius: 5px;">
-    <div id="moving-bar" style="position: absolute; left: 0; width: 20px; height: 20px; background: green;"></div>
-    <div id="target-bar" style="position: absolute; left: 90px; width: 20px; height: 20px; background: blue; opacity: 0.7;"></div>
-  </div>
-  <button id="hitBtn" style="margin-top: 5px; padding: 5px 10px;">Hit!</button>
-  <p>Huidig volume: <span id="volumeDisplay">50%</span></p>
-</div>
-
-
 
   <script src="functions.js"></script>
 </body>
