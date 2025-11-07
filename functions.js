@@ -336,8 +336,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Playlist met bestanden en namen
   const playlist = [
     { src: "music/Mingle Game Song but Hatsune Miku Cover _ SquidGame 2 - kopie.mp3", name: "Mingle song by Hatsuna Miku (Cover)" },
-    // { src: "path/naar/nummer2.mp3", name: "Nummer 2" },
-    // { src: "path/naar/nummer3.mp3", name: "Nummer 3" }
+     { src: "music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
+     { src: "music/【MV】M@GICAL☆CURE! LOVE ♥ SHOT! _ SAWTOWNE feat. Hatsune Miku 0.mp3", name: "Miku Beam by Hatsuna Miku" },
+     { src: "music/Hide & Seek Song Lyric Video _ Squid Game_ Season 3 _ Netflix.mp3", name: "Hide & Seek from Squad game S3" },
+     { src: "music/F-14 Tomcat RWR Sounds 4.mp3", name: "F-14 Tomcat RWR Sounds" },
+     { src: "music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
+    //  { src: "", name: "" },
+    //  { src: "", name: "" }
   ];
 
   let currentIndex = 0;
