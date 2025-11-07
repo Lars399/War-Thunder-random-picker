@@ -332,6 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("bgMusic");
   const playPauseBtn = document.getElementById("playPauseBtn");
   const stopBtn = document.getElementById("stopBtn");
+  const currentTrack = document.getElementById("currentTrack");
 
   let isPlaying = false;
 
@@ -340,10 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
       audio.play();
       isPlaying = true;
       playPauseBtn.textContent = "⏸️";
+      currentTrack.textContent = "Jouw nummer naam"; // vervang dit door je echte tracknaam
     } else {
       audio.pause();
       isPlaying = false;
       playPauseBtn.textContent = "▶️";
+      currentTrack.textContent = "Pauze";
     }
   });
 
@@ -352,5 +355,6 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.currentTime = 0;
     isPlaying = false;
     playPauseBtn.textContent = "▶️";
+    currentTrack.textContent = "Gestopt";
   });
 });
