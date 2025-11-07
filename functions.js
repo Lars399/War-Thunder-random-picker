@@ -342,8 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: "music/【MV】M@GICAL☆CURE! LOVE ♥ SHOT! _ SAWTOWNE feat. Hatsune Miku 0.mp3", name: "Miku Beam by Hatsune Miku" },
     { src: "music/Hide & Seek Song Lyric Video _ Squid Game_ Season 3 _ Netflix.mp3", name: "Hide & Seek from Squid Game S3" },
     { src: "music/F-14 Tomcat RWR Sounds 4.mp3", name: "F-14 Tomcat RWR Sounds" },
-    { src: "music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
-    { src: "", name: "" }, // lege track als fallback
+    // { src: "", name: "" },
   ];
 
   let currentIndex = 0;
