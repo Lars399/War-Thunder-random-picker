@@ -327,58 +327,98 @@ generateTierList();
 
 });
 
+// ====== RANDOMIZER MET VOLGENDE / VORIGE ======
 document.addEventListener("DOMContentLoaded", () => {
-  const audio = document.getElementById("bgMusic");
-  const playPauseBtn = document.getElementById("playPauseBtn");
-  const stopBtn = document.getElementById("stopBtn");
-  const currentTrack = document.getElementById("currentTrack");
+  const randomizeBtn = document.getElementById("randomizeBtn");
+  const resultDiv = document.getElementById("result");
+  const output = document.getElementById("output");
 
-  // Playlist met bestanden en namen
-  const playlist = [
-    { src: "music/Mingle Game Song but Hatsune Miku Cover _ SquidGame 2 - kopie.mp3", name: "Mingle song by Hatsuna Miku (Cover)" },
-     { src: "music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
-     { src: "music/【MV】M@GICAL☆CURE! LOVE ♥ SHOT! _ SAWTOWNE feat. Hatsune Miku 0.mp3", name: "Miku Beam by Hatsuna Miku" },
-     { src: "music/Hide & Seek Song Lyric Video _ Squid Game_ Season 3 _ Netflix.mp3", name: "Hide & Seek from Squad game S3" },
-     { src: "music/F-14 Tomcat RWR Sounds 4.mp3", name: "F-14 Tomcat RWR Sounds" },
-     { src: "music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
-    //  { src: "", name: "" },
-    //  { src: "", name: "" }
-  ];
+  let history = []; // Bewaart alle resultaten
+  let historyIndex = -1; // Start index
 
-  let currentIndex = 0;
-  let isPlaying = false;
+  function showResult(result) {
+    output.innerHTML = result.html; // HTML van de gegenereerde result
+    historyIndex = result.index; // Update huidige index
+    resultDiv.classList.remove("hidden");
+  }
 
-  // Zet eerste nummer
-  audio.src = playlist[currentIndex].src;
-  currentTrack.textContent = playlist[currentIndex].name;
+  function generateRandom() {
+    const selectedCountries = Array.from(document.querySelectorAll("#countries input:checked")).map(cb => cb.value);
+    if (selectedCountries.length === 0) { alert("Selecteer minstens één land!"); return; }
 
-  playPauseBtn.addEventListener("click", () => {
-    if (!isPlaying) {
-      audio.play();
-      isPlaying = true;
-      playPauseBtn.textContent = "⏸️";
+    const mode = document.querySelector('input[name="mode"]:checked').value;
+    const country = selectedCountries[Math.floor(Math.random() * selectedCountries.length)];
+    let resultText = "";
+    let resultHTML = "";
+
+    if (mode === "br") {
+      const selectedBRs = Array.from(document.querySelectorAll("#br-list input:checked")).map(cb => parseFloat(cb.value));
+      if (selectedBRs.length === 0) { alert("Selecteer minstens één BR!"); return; }
+
+      const brRandomMode = document.querySelector('input[name="brRandomMode"]:checked').value;
+      let randomBR1, randomBR2;
+
+      if (brRandomMode === "random") {
+        if (selectedBRs.length === 1) randomBR1 = randomBR2 = selectedBRs[0];
+        else {
+          randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+          do { randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)]; } while (randomBR2 === randomBR1);
+        }
+      } else {
+        randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+        if (selectedBRs.length === 1) randomBR2 = randomBR1;
+        else {
+          const closeBRs = selectedBRs.filter(br => Math.abs(br - randomBR1) <= 0.7 && br !== randomBR1);
+          randomBR2 = closeBRs.length > 0 ? closeBRs[Math.floor(Math.random() * closeBRs.length)]
+                                           : selectedBRs.find(br => br !== randomBR1);
+        }
+      }
+
+      const [lowBR, highBR] = [Math.min(randomBR1, randomBR2), Math.max(randomBR1, randomBR2)];
+      const rangeText = lowBR === highBR ? `${lowBR.toFixed(1)}` : `${lowBR.toFixed(1)} – ${highBR.toFixed(1)}`;
+      resultText = `${country} @ BR ${rangeText}`;
+
+      resultHTML = `
+        <div style="position: relative; width: 100%; height: 300px; background-image: url('${countryImages[country]}');
+                    background-size: contain; background-repeat: no-repeat; background-position: center; border: 2px solid #000;
+                    border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <div style="position: absolute; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0,0.2); border-radius:8px;"></div>
+          <div style="position: relative; text-align: center; color: #FFD700; text-shadow:1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;">
+            <span style="font-weight:bold; font-size:1.5em;">${resultText}</span><br>
+            <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
+              ${brImages[lowBR.toFixed(1)] ? `<img src="${brImages[lowBR.toFixed(1)]}" alt="BR ${lowBR}" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px;">` : ""}
+              ${brImages[highBR.toFixed(1)] ? `<img src="${brImages[highBR.toFixed(1)]}" alt="BR ${highBR}" style="height:100px; object-fit:contain; border:2px solid #000; border-radius:8px;">` : ""}
+            </div>
+          </div>
+        </div>
+      `;
     } else {
-      audio.pause();
-      isPlaying = false;
-      playPauseBtn.textContent = "▶️";
+      const selectedTiers = Array.from(document.querySelectorAll("#tier-list input:checked")).map(cb => cb.value);
+      if (selectedTiers.length === 0) { alert("Selecteer minstens één Tier!"); return; }
+      const randomTier = selectedTiers[Math.floor(Math.random() * selectedTiers.length)];
+      resultText = `${country} @ Tier ${randomTier}`;
+      resultHTML = `<span>${resultText}</span>`;
     }
+
+    // Voeg resultaat toe aan geschiedenis
+    history = history.slice(0, historyIndex + 1); // verwijder “vooruit” geschiedenis
+    history.push({ html: resultHTML, text: resultText, index: history.length });
+    showResult(history[history.length - 1]);
+  }
+
+  randomizeBtn.addEventListener("click", generateRandom);
+
+  // ====== VOLGENDE / VORIGE KNOP ======
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  prevBtn.addEventListener("click", () => {
+    if (historyIndex > 0) showResult(history[historyIndex - 1]);
   });
 
-  stopBtn.addEventListener("click", () => {
-    audio.pause();
-    audio.currentTime = 0;
-    isPlaying = false;
-    playPauseBtn.textContent = "▶️";
-  });
-
-  // Event listener als nummer klaar is om automatisch naar het volgende te gaan
-  audio.addEventListener("ended", () => {
-    currentIndex = (currentIndex + 1) % playlist.length;
-    audio.src = playlist[currentIndex].src;
-    currentTrack.textContent = playlist[currentIndex].name;
-    audio.play();
-    isPlaying = true;
-    playPauseBtn.textContent = "⏸️";
+  nextBtn.addEventListener("click", () => {
+    if (historyIndex < history.length - 1) showResult(history[historyIndex + 1]);
   });
 });
+
 
