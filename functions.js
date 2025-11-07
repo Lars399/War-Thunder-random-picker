@@ -334,19 +334,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const stopBtn = document.getElementById("stopBtn");
   const currentTrack = document.getElementById("currentTrack");
 
+  // Playlist met bestanden en namen
+  const playlist = [
+    { src: "music/Mingle Game Song but Hatsune Miku Cover _ SquidGame 2 - kopie.mp3", name: "Mingle song by Hatsuna Miku (Cover)" },
+    // { src: "path/naar/nummer2.mp3", name: "Nummer 2" },
+    // { src: "path/naar/nummer3.mp3", name: "Nummer 3" }
+  ];
+
+  let currentIndex = 0;
   let isPlaying = false;
+
+  // Zet eerste nummer
+  audio.src = playlist[currentIndex].src;
+  currentTrack.textContent = playlist[currentIndex].name;
 
   playPauseBtn.addEventListener("click", () => {
     if (!isPlaying) {
       audio.play();
       isPlaying = true;
       playPauseBtn.textContent = "⏸️";
-      currentTrack.textContent = "Jouw nummer naam"; // vervang dit door je echte tracknaam
     } else {
       audio.pause();
       isPlaying = false;
       playPauseBtn.textContent = "▶️";
-      currentTrack.textContent = "Pauze";
     }
   });
 
@@ -355,6 +365,16 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.currentTime = 0;
     isPlaying = false;
     playPauseBtn.textContent = "▶️";
-    currentTrack.textContent = "Gestopt";
+  });
+
+  // Event listener als nummer klaar is om automatisch naar het volgende te gaan
+  audio.addEventListener("ended", () => {
+    currentIndex = (currentIndex + 1) % playlist.length;
+    audio.src = playlist[currentIndex].src;
+    currentTrack.textContent = playlist[currentIndex].name;
+    audio.play();
+    isPlaying = true;
+    playPauseBtn.textContent = "⏸️";
   });
 });
+
