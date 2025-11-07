@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   "4.7": "https://images3.memedroid.com/images/UPLOADED870/605cb3151d056.jpeg",
   "5.0": "img/chicksaebyeokgunhoofd5.0.png",
   "5.3": "https://i.ytimg.com/vi/UGGAf44mvcE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBhxO7HqqVWG1XxShh6pR8w3yjB-w",
-  "5.7": "img/chicksaebyeokgunhoofd5.0.png",
+  "5.7": "img/gyeongsucat5.7.png",
   "6.0": "https://64.media.tumblr.com/tumblr_lv9zp0sLcm1qg39ewo1_500.gifv",
   "6.3": "https://pbs.twimg.com/media/GV_qGL-XQAE35jy?format=jpg&name=large",
   "6.7": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Nazi_Germany_%28with_Iron_Cross%29.png",
