@@ -235,9 +235,8 @@ if (mode === "br") {
   let randomBR1, randomBR2;
 
 if (brRandomMode === "random") {
-  // Volledig willekeurig: twee totaal random BR's, maar niet dezelfde
   if (selectedBRs.length === 1) {
-    randomBR1 = randomBR2 = selectedBRs[0];
+    randomBR1 = randomBR2 = selectedBRs[0]; // oké, maar geen loop nodig
   } else {
     randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
     do {
@@ -245,22 +244,22 @@ if (brRandomMode === "random") {
     } while (randomBR2 === randomBR1);
   }
 } else {
-  // Normale logica: tweede BR dicht bij de eerste, maar niet dezelfde
+  // Normale logica
   randomBR1 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
-
-  // Zoek BR’s die binnen ±0.7 liggen maar niet dezelfde zijn
-  const closeBRs = selectedBRs.filter(br => Math.abs(br - randomBR1) <= 0.7 && br !== randomBR1);
-
-  if (closeBRs.length > 0) {
-    randomBR2 = closeBRs[Math.floor(Math.random() * closeBRs.length)];
+  if (selectedBRs.length === 1) {
+    randomBR2 = randomBR1;
   } else {
-    // fallback: kies een willekeurige andere BR die niet dezelfde is
-    do {
-      randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
-    } while (randomBR2 === randomBR1);
+    const closeBRs = selectedBRs.filter(br => Math.abs(br - randomBR1) <= 0.7 && br !== randomBR1);
+    if (closeBRs.length > 0) {
+      randomBR2 = closeBRs[Math.floor(Math.random() * closeBRs.length)];
+    } else {
+      // fallback: kies een willekeurige andere BR die niet dezelfde is
+      do {
+        randomBR2 = selectedBRs[Math.floor(Math.random() * selectedBRs.length)];
+      } while (randomBR2 === randomBR1);
+    }
   }
 }
-
 
   const [lowBR, highBR] = [Math.min(randomBR1, randomBR2), Math.max(randomBR1, randomBR2)];
   const rangeText = `${lowBR.toFixed(1)} – ${highBR.toFixed(1)}`;
