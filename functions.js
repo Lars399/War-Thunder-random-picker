@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: "music/iKON - ‘사랑을 했다(LOVE SCENARIO)’ M_V 0.mp3", name: "Love Scenario by Towa Tei" },
     { src: "music/Levitating- Dababy ’s Verse Only 0.mp3", name: "Levitating by Dababy X Dua Lipa" },
     { src: "music/Damned [Higher Pitch].mp3", name: "Damed  (higher pitch) by Rissole" },
-    { src: "music/Lil Dicky - Freaky Friday (Lyrics) ft. Chris Brown 0", name: "Freaky Friday by Lil Dicky"},
+    { src: "music/Lil Dicky - Freaky Friday (Lyrics) ft. Chris Brown 0.mp3", name: "Freaky Friday by Lil Dicky"},
     // { src: "", name: "" },
   ];
 
