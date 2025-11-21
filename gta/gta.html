@@ -1,0 +1,87 @@
+<script src="functions.js"></script>
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA Randomizer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#1e1e2f] text-gray-200">
+
+  <!-- NAVBAR -->
+  <div class="bg-gray-800 px-6 py-3 flex gap-6 text-lg">
+    <a href="../index.html" class="hover:underline">War Thunder</a>
+    <a href="gta.html" class="hover:underline">GTA</a>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="max-w-3xl mx-auto bg-[#2b2b40] mt-8 p-8 rounded-lg shadow-lg">
+
+    <h1 class="text-3xl font-bold text-center mb-10">GTA Randomizer</h1>
+
+    <!-- BLOCK COMPONENT (voor alle shops) -->
+    <!-- KLEDINGWINKEL -->
+    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Kledingwinkel</h2>
+        <button id="selectClothing" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
+          Selecteer / Deselecteer alles
+        </button>
+      </div>
+
+      <div id="clothingCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
+        <!-- wordt via JS gevuld -->
+      </div>
+    </div>
+
+    <!-- KAPPER -->
+    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Kapper</h2>
+        <button id="selectBarber" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
+          Selecteer / Deselecteer alles
+        </button>
+      </div>
+
+      <div id="barberCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
+        <!-- wordt via JS gevuld -->
+      </div>
+    </div>
+
+    <!-- TATTOO SHOP -->
+    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Tattoo Shop</h2>
+        <button id="selectTattoos" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
+          Selecteer / Deselecteer alles
+        </button>
+      </div>
+
+      <div id="tattooCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
+        <!-- wordt via JS gevuld -->
+      </div>
+    </div>
+
+    <!-- RANDOMIZE BUTTON -->
+    <button id="randomizeBtn"
+      class="block mx-auto mt-10 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-lg font-semibold">
+      🎲 Randomize
+    </button>
+
+    <!-- RESULT -->
+    <div id="result" class="hidden mt-10 text-center">
+      <h2 class="text-2xl font-bold mb-2">Resultaat</h2>
+      <p id="output" class="text-lg"></p>
+    </div>
+
+  </div>
+
+  <script src="gta.js"></script>
+</body>
+
+</html>
