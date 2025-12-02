@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
   const currentTrack = document.getElementById("currentTrack");
+  const shuffleBtn = document.getElementById("shuffleBtn");
 
   // Playlist met bestanden en namen
   const playlist = [
@@ -24,14 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // { src: "", name: "" },
   ];
 
-  let currentIndex = 0;
+    let currentIndex = 0;
   let isPlaying = false;
+  let shuffle = false;
 
   // Functie om een track te laden
   function loadTrack(index) {
     const track = playlist[index];
 
-    if (!track.src) {
+    if (!track || !track.src) {
       audio.pause();
       currentTrack.textContent = "Geen nummer geselecteerd";
       isPlaying = false;
@@ -41,11 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     audio.src = track.src;
     currentTrack.textContent = track.name || "Onbekend nummer";
+
     if (isPlaying) audio.play();
     playPauseBtn.textContent = isPlaying ? "⏸️" : "▶️";
   }
 
-  // Zet eerste nummer
+  // Eerste nummer laden
   loadTrack(currentIndex);
 
   // Play / Pause
@@ -73,24 +76,40 @@ document.addEventListener("DOMContentLoaded", () => {
   prevBtn.addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
     loadTrack(currentIndex);
-    if (isPlaying && playlist[currentIndex].src) audio.play();
+    if (isPlaying) audio.play();
   });
 
-  // Volgende track
+  // Volgende track + shuffle support
   nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % playlist.length;
+    if (shuffle) {
+      currentIndex = Math.floor(Math.random() * playlist.length);
+    } else {
+      currentIndex = (currentIndex + 1) % playlist.length;
+    }
+
     loadTrack(currentIndex);
-    if (isPlaying && playlist[currentIndex].src) audio.play();
+    if (isPlaying) audio.play();
   });
 
-audio.addEventListener("ended", () => {
-  currentIndex = (currentIndex + 1) % playlist.length;
-  isPlaying = true; // <<< BELANGRIJK: zet eerst isPlaying op true
-  loadTrack(currentIndex);
-  audio.play();
-  playPauseBtn.textContent = "⏸️";
-});
+  // Shuffle knop
+  shuffleBtn.addEventListener("click", () => {
+    shuffle = !shuffle;
+    shuffleBtn.textContent = shuffle ? "🔀 ON" : "🔀";
+  });
 
+  // Auto-play volgende nummer + shuffle support
+  audio.addEventListener("ended", () => {
+    if (shuffle) {
+      currentIndex = Math.floor(Math.random() * playlist.length);
+    } else {
+      currentIndex = (currentIndex + 1) % playlist.length;
+    }
+
+    isPlaying = true;
+    loadTrack(currentIndex);
+    audio.play();
+    playPauseBtn.textContent = "⏸️";
+  });
 
   // ===== MINI GAME VOOR VOLUME =====
 const movingBar = document.getElementById("moving-bar");
