@@ -9,18 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Playlist met bestanden en namen
   const playlist = [
-    { src: "music/Mingle Game Song but Hatsune Miku Cover _ SquidGame 2 - kopie.mp3", name: "Mingle song by Hatsune Miku (Cover)" },
-    { src: "music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
-    { src: "music/【MV】M@GICAL☆CURE! LOVE ♥ SHOT! _ SAWTOWNE feat. Hatsune Miku 0.mp3", name: "Miku Beam by Hatsune Miku" },
-    { src: "music/Hide & Seek Song Lyric Video _ Squid Game_ Season 3 _ Netflix.mp3", name: "Hide & Seek from Squid Game S3" },
-    { src: "music/F-14 Tomcat RWR Sounds 4.mp3", name: "F-14 Tomcat RWR Sounds" },
-    { src: "music/Dat klinkt als weekend!.mp3", name: "Reclame tijd Albert Heijn" },
-    { src: "music/Boodschappenlied.mp3", name: "Bootschappenlied by taalklas.nl" },
-    { src: "music/Fortnite Fan (Ronnie Flex - Fan ft. Famke Louise PARODIE).mp3", name: "Fortnite Fan by Vogeljongen" },
-    { src: "music/iKON - ‘사랑을 했다(LOVE SCENARIO)’ M_V 0.mp3", name: "Love Scenario by Towa Tei" },
-    { src: "music/Levitating- Dababy ’s Verse Only 0.mp3", name: "Levitating by Dababy X Dua Lipa" },
-    { src: "music/Damned [Higher Pitch].mp3", name: "Damed  (higher pitch) by Rissole" },
-    { src: "music/Lil Dicky - Freaky Friday (Lyrics) ft. Chris Brown 0.mp3", name: "Freaky Friday by Lil Dicky"},
+    { src: "/music/Mingle Game Song but Hatsune Miku Cover _ SquidGame 2 - kopie.mp3", name: "Mingle song by Hatsune Miku (Cover)" },
+    { src: "/music/Rammstein - Sonne (Official Video) 0.mp3", name: "Sonne by Rammstein" },
+    { src: "/music/【MV】M@GICAL☆CURE! LOVE ♥ SHOT! _ SAWTOWNE feat. Hatsune Miku 0.mp3", name: "Miku Beam by Hatsune Miku" },
+    { src: "/music/Hide & Seek Song Lyric Video _ Squid Game_ Season 3 _ Netflix.mp3", name: "Hide & Seek from Squid Game S3" },
+    { src: "/music/F-14 Tomcat RWR Sounds 4.mp3", name: "F-14 Tomcat RWR Sounds" },
+    { src: "/music/Dat klinkt als weekend!.mp3", name: "Reclame tijd Albert Heijn" },
+    { src: "/music/Boodschappenlied.mp3", name: "Bootschappenlied by taalklas.nl" },
+    { src: "/music/Fortnite Fan (Ronnie Flex - Fan ft. Famke Louise PARODIE).mp3", name: "Fortnite Fan by Vogeljongen" },
+    { src: "/music/iKON - ‘사랑을 했다(LOVE SCENARIO)’ M_V 0.mp3", name: "Love Scenario by Towa Tei" },
+    { src: "/music/Levitating- Dababy ’s Verse Only 0.mp3", name: "Levitating by Dababy X Dua Lipa" },
+    { src: "/music/Damned [Higher Pitch].mp3", name: "Damed  (higher pitch) by Rissole" },
+    { src: "/music/Lil Dicky - Freaky Friday (Lyrics) ft. Chris Brown 0.mp3", name: "Freaky Friday by Lil Dicky"},
     // { src: "", name: "" },
   ];
 
