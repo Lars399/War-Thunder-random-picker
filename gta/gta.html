@@ -81,7 +81,37 @@
 
   </div>
 
+  <audio id="bgMusic"></audio>
+  <div id="playerBlock">
+    <div id="music-player">
+      <div class="track-info">
+        <strong>Now Playing:</strong><br>
+        <div id="currentTrack">Geen nummer geselecteerd</div>
+      </div>
+      <div class="controls">
+        <button id="playPauseBtn">▶️</button>
+        <button id="stopBtn">⏹️</button>
+        <button id="prevBtn">Vorige</button>
+        <button id="nextBtn">Volgende</button>
+      </div>
+    </div>
+
+    <div id="volume-game" style="margin-top: 10px; text-align: center;">
+      <strong>Mini Volume Game 🎵</strong>
+      <p>Klik op de knop als de groene balk de blauwe markering raakt!</p>
+      <div id="game-bar"
+        style="position: relative; width: 200px; height: 20px; background: #444; margin: 0 auto; border-radius: 5px;">
+        <div id="moving-bar" style="position: absolute; left: 0; width: 5px; height: 20px; background: green;"></div>
+        <div id="target-bar"
+          style="position: absolute; left: 90px; width: 5px; height: 20px; background: blue; opacity: 0.7;"></div>
+      </div>
+      <button id="hitBtn" style="margin-top: 5px; padding: 5px 10px;">Hit!</button>
+      <p>Huidig volume: <span id="volumeDisplay">100%</span></p>
+    </div>
+  </div>
+
   <script src="gta.js"></script>
+  <script src="../music.js"></script>
 </body>
 
 </html>
