@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: "/music/Levitating- Dababy ’s Verse Only 0.mp3", name: "Levitating by Dababy X Dua Lipa" },
     { src: "/music/Damned [Higher Pitch].mp3", name: "Damed  (higher pitch) by Rissole" },
     { src: "/music/Lil Dicky - Freaky Friday (Lyrics) ft. Chris Brown 0.mp3", name: "Freaky Friday by Lil Dicky"},
+    { src: "/music/Black Ops 2 Soundtrack_ Adrenaline 0.mp3", name: "COD Black Ops 2 Soundtrack" },
+    { src: "/music/Kaskade & WILL K - Flip Reset [Monstercat Release] 0.mp3", name: "Flip Reset by kaskade & WILL K" },
+    { src: "/music/Phineas and Ferb - Intro (Dutch version).mp3", name: "Phineas & Ferb intro (Dutch)" },
+    { src: "/music/Törke.mp3", name: "Törke" },
     // { src: "", name: "" },
   ];
 
