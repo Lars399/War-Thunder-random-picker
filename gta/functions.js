@@ -298,48 +298,66 @@ function randomizeGTA() {
   });
 
   // Kapper
-  document.querySelectorAll("#barberCategories input:checked").forEach(cat => {
-    let item = "";
-    switch(cat.value) {
-      case "Haar":
-        item = `Haar: ${Math.floor(Math.random() * barberVariants.Haar) + 1}`;
-        if(document.querySelector("#barberCategories input[value='HaarKleur']")?.checked) {
-          item += ` (kleur ${Math.floor(Math.random() * barberVariants.HaarKleur) + 1})`;
-        }
-        break;
-      case "Baard":
-        item = `Baard: ${Math.floor(Math.random() * barberVariants.Baard) + 1}`;
-        if(document.querySelector("#barberCategories input[value='BaardKleur']")?.checked) {
-          item += ` (kleur ${Math.floor(Math.random() * barberVariants.BaardKleur) + 1})`;
-        }
-        break;
-      case "Wenkbrauwen":
-        item = `Wenkbrauwen: ${Math.floor(Math.random() * barberVariants.Wenkbrauwen) + 1}`;
-        if(document.querySelector("#barberCategories input[value='WenkbrauwenKleur']")?.checked) {
-          item += ` (kleur ${Math.floor(Math.random() * barberVariants.WenkbrauwenKleur) + 1})`;
-        }
-        break;
-      case "Borst haar":
-        item = `Borst haar: ${Math.floor(Math.random() * barberVariants.BorstHaar) + 1}`;
-        if(document.querySelector("#barberCategories input[value='BorstHaarKleur']")?.checked) {
-          item += ` (kleur ${Math.floor(Math.random() * barberVariants.BorstHaarKleur) + 1})`;
-        }
-        break;
-      case "Contactlenzen":
-        item = `Contactlenzen: ${Math.floor(Math.random() * barberVariants.Contactlenzen) + 1}`;
-        break;
-      case "Gezicht verf":
-        item = `Gezicht verf: ${Math.floor(Math.random() * barberVariants.GezichtVerf) + 1}`;
-        break;
-      case "Make-up (Ogen)":
-        item = `Make-up Ogen: ${Math.floor(Math.random() * barberVariants.MakeUpOgen) + 1}`;
-        break;
-      case "Make-up (Lipstick)":
-        item = `Make-up Lipstick: ${Math.floor(Math.random() * barberVariants.MakeUpLipstick) + 1}`;
-        break;
-    }
-    result.push(item);
-  });
+document.querySelectorAll("#barberCategories input:checked").forEach(cat => {
+  let item = "";
+
+  switch(cat.value) {
+
+    case "Haar":
+      const haar = Math.floor(Math.random() * barberVariants.Haar) + 1;
+      const haarHighlight = Math.floor(Math.random() * 48) + 1; // highlight haar
+      item = `Haar: ${haar} (highlight ${haarHighlight})`;
+
+      if (document.querySelector("#barberCategories input[value='HaarKleur']")?.checked) {
+        item += ` (kleur ${Math.floor(Math.random() * barberVariants.HaarKleur) + 1})`;
+      }
+      break;
+
+    case "Baard":
+      item = `Baard: ${Math.floor(Math.random() * barberVariants.Baard) + 1}`;
+      if (document.querySelector("#barberCategories input[value='BaardKleur']")?.checked) {
+        item += ` (kleur ${Math.floor(Math.random() * barberVariants.BaardKleur) + 1})`;
+      }
+      break;
+
+    case "Wenkbrauwen":
+      item = `Wenkbrauwen: ${Math.floor(Math.random() * barberVariants.Wenkbrauwen) + 1}`;
+      if (document.querySelector("#barberCategories input[value='WenkbrauwenKleur']")?.checked) {
+        item += ` (kleur ${Math.floor(Math.random() * barberVariants.WenkbrauwenKleur) + 1})`;
+      }
+      break;
+
+    case "Borst haar":
+      item = `Borst haar: ${Math.floor(Math.random() * barberVariants.BorstHaar) + 1}`;
+      if (document.querySelector("#barberCategories input[value='BorstHaarKleur']")?.checked) {
+        item += ` (kleur ${Math.floor(Math.random() * barberVariants.BorstHaarKleur) + 1})`;
+      }
+      break;
+
+    case "Contactlenzen":
+      item = `Contactlenzen: ${Math.floor(Math.random() * barberVariants.Contactlenzen) + 1}`;
+      break;
+
+    case "Gezicht verf":
+      const gezichtsverf = Math.floor(Math.random() * barberVariants.GezichtVerf) + 1;
+      const faceHighlight = Math.floor(Math.random() * 64) + 1; // highlight gezicht
+      item = `Gezicht verf: ${gezichtsverf} (highlight ${faceHighlight})`;
+      break;
+
+    case "Make-up (Ogen)":
+      item = `Make-up Ogen: ${Math.floor(Math.random() * barberVariants.MakeUpOgen) + 1}`;
+      break;
+
+    case "Make-up (Lipstick)":
+      const lipstick = Math.floor(Math.random() * barberVariants.MakeUpLipstick) + 1;
+      const lipHighlight = Math.floor(Math.random() * 42) + 1; // highlight lipstick
+      item = `Make-up Lipstick: ${lipstick} (highlight ${lipHighlight})`;
+      break;
+  }
+
+  result.push(item);
+});
+
 
   // Tattoo shop
   document.querySelectorAll("#tattooCategories input:checked").forEach(cat => {
