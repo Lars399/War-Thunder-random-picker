@@ -293,7 +293,8 @@ function randomizeGTA() {
   document.querySelectorAll("#clothingCategories input:checked").forEach(cat => {
     const category = cat.value;
     const itemObj = randomChoice(clothingStoreItems[category]);
-    result.push(`Kledingwinkel - ${category}: ${itemObj.name} (${itemObj.count})`);
+    const randomVariant = Math.floor(Math.random() * itemObj.count) + 1;
+  result.push(`Kledingwinkel - ${category}: ${itemObj.name} (${randomVariant})`);
   });
 
   // Kapper
