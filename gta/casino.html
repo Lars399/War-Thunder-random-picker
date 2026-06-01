@@ -1,0 +1,187 @@
+<script src="functions.js"></script>
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA Randomizer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    #music-player {
+      background: #2b2b40;
+      padding: 12px 18px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border: 2px solid #ff9800;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    #music-player .track-info {
+      color: #fff;
+      font-size: 0.9rem;
+      line-height: 1.2em;
+    }
+
+    #music-player .controls button {
+      background: #ff9800;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    #music-player .controls button:hover {
+      background: #e68900;
+    }
+
+    #volume-game {
+      background: #2b2b40;
+      border: 2px solid #ff9800;
+      padding: 10px;
+      border-radius: 10px;
+      width: 230px;
+      text-align: center;
+      position: relative;
+    }
+
+    #playerBlock {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      align-items: flex-end;
+    }
+
+            .navbar {
+            background-color: #333;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+  </style>
+</head>
+
+<body class="bg-[#1e1e2f] text-gray-200">
+
+  <!-- NAVBAR -->
+  <div class="bg-gray-800 px-6 py-3 flex gap-6 text-lg">
+    <a href="../index.html" class="hover:underline">War Thunder</a>
+    <a href="gta.html" class="hover:underline">GTA</a>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="max-w-3xl mx-auto bg-[#2b2b40] mt-8 p-8 rounded-lg shadow-lg">
+
+    <h1 class="text-3xl font-bold text-center mb-10">GTA Randomizer</h1>
+
+    <!-- BLOCK COMPONENT (voor alle shops) -->
+    <!-- KLEDINGWINKEL -->
+    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Kledingwinkel</h2>
+        <button id="selectClothing" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
+          Selecteer / Deselecteer alles
+        </button>
+      </div>
+
+      <div id="clothingCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
+        <!-- wordt via JS gevuld -->
+      </div>
+    </div>
+
+    <!-- KAPPER -->
+    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Kapper</h2>
+        <button id="selectBarber" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
+          Selecteer / Deselecteer alles
+        </button>
+      </div>
+
+      <div id="barberCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
+        <!-- wordt via JS gevuld -->
+      </div>
+    </div>
+
+    <!-- TATTOO SHOP -->
+    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Tattoo Shop</h2>
+        <button id="selectTattoos" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
+          Selecteer / Deselecteer alles
+        </button>
+      </div>
+
+      <div id="tattooCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
+        <!-- wordt via JS gevuld -->
+      </div>
+    </div>
+
+    <!-- RANDOMIZE BUTTON -->
+    <button id="randomizeBtn"
+      class="block mx-auto mt-10 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-lg font-semibold">
+      🎲 Randomize
+    </button>
+
+    <!-- RESULT -->
+    <div id="result" class="hidden mt-10 text-center">
+      <h2 class="text-2xl font-bold mb-2">Resultaat</h2>
+      <p id="output" class="text-lg"></p>
+    </div>
+
+  </div>
+
+  <audio id="bgMusic"></audio>
+  <div id="playerBlock">
+    <div id="music-player">
+      <div class="track-info">
+        <strong>Now Playing:</strong><br>
+        <div id="currentTrack">Geen nummer geselecteerd</div>
+      </div>
+      <div class="controls">
+        <button id="playPauseBtn">▶️</button>
+        <button id="stopBtn">⏹️</button>
+        <button id="prevBtn">Vorige</button>
+        <button id="nextBtn">Volgende</button>
+        <button id="shuffleBtn">🔀</button>
+      </div>
+    </div>
+
+    <div id="volume-game" style="margin-top: 10px; text-align: center;">
+      <strong>Mini Volume Game 🎵</strong>
+      <p>Klik op de knop als de groene balk de blauwe markering raakt!</p>
+      <div id="game-bar"
+        style="position: relative; width: 200px; height: 20px; background: #444; margin: 0 auto; border-radius: 5px;">
+        <div id="moving-bar" style="position: absolute; left: 0; width: 5px; height: 20px; background: green;"></div>
+        <div id="target-bar"
+          style="position: absolute; left: 90px; width: 5px; height: 20px; background: blue; opacity: 0.7;"></div>
+      </div>
+      <button id="hitBtn" style="margin-top: 5px; padding: 5px 10px;">Hit!</button>
+      <p>Huidig volume: <span id="volumeDisplay">100%</span></p>
+    </div>
+  </div>
+
+  <script src="gta.js"></script>
+  <script src="../music/music.js"></script>
+</body>
+
+</html>
