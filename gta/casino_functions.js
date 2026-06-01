@@ -73,17 +73,26 @@ const entryRoutes = {
     "Staff Lobby",
     "Basement Tunnel",
     "Roof Terrace"
-  ],
-
-  "Aggressive": [
-    "Main Door Assault",
-    "Roof Breach",
-    "Underground Tunnel Blast"
   ]
 };
 
 // -------------------------------
-// BIG CON ROUTES (linked to disguise)
+// AGGRESSIVE ENTRY ROUTES + METHODS
+// -------------------------------
+const aggressiveRoutes = [
+  "Main Door Assault",
+  "Roof Breach",
+  "Sewer Entry"
+];
+
+const aggressiveMethods = {
+  "Main Door Assault": "Breach Charges",
+  "Roof Breach": "Explosives + Rappel",
+  "Sewer Entry": "Thermal Charges"
+};
+
+// -------------------------------
+// BIG CON ROUTES
 // -------------------------------
 const bigConRoutes = {
   "Gruppe Sechs": "Gruppe Sechs Entry Truck",
@@ -139,7 +148,7 @@ const approachPreps = {
     ],
     optional: [
       "Reinforced Armor",
-      "Tunnel Boring Machine"
+      "Tunnel Boring Machine (optional alternative route)"
     ]
   }
 };
@@ -207,14 +216,29 @@ function randomizeGTA() {
   }
 
   // ---------------------------
-  // NON BIG CON ROUTE
+  // NON BIG CON ROUTES
   // ---------------------------
-  if (approach !== "The Big Con") {
 
-    entryRoute = randomChoice(entryRoutes[approach]);
+  if (approach === "Silent & Sneaky") {
+
+    entryRoute = randomChoice(entryRoutes["Silent & Sneaky"]);
 
     result.push(`<h3><b>🚪 Entry Route</b></h3>`);
     result.push(entryRoute);
+    result.push("");
+  }
+
+  if (approach === "Aggressive") {
+
+    entryRoute = randomChoice(aggressiveRoutes);
+    const method = aggressiveMethods[entryRoute];
+
+    result.push(`<h3><b>🚪 Entry Route</b></h3>`);
+    result.push(entryRoute);
+
+    result.push(`<h3><b>💥 Entry Method</b></h3>`);
+    result.push(method);
+
     result.push("");
   }
 
