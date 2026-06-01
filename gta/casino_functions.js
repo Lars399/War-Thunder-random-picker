@@ -3,7 +3,7 @@
 // -------------------------------
 
 // -------------------------------
-// HEIST - APPROACH
+// APPROACHES
 // -------------------------------
 const approachOptions = [
   "Silent & Sneaky",
@@ -12,86 +12,141 @@ const approachOptions = [
 ];
 
 // -------------------------------
-// VAULT / SETUP OPTIONS
+// VAULT CONTENTS
 // -------------------------------
-const vaultContentOptions = ["Cash", "Artwork", "Gold", "Diamonds"];
-
-const entryDisguises = [
-  "Gruppe Sechs",
-  "Bugstars",
-  "Maintenance",
-  "NOOSE",
-  "Firefighter"
-];
-
-const securityOptions = [
-  "Low Security",
-  "Medium Security",
-  "High Security"
+const vaultContents = [
+  "Cash",
+  "Artwork",
+  "Gold",
+  "Diamonds"
 ];
 
 // -------------------------------
-// CREW OPTIONS
+// CREW
 // -------------------------------
 const driverOptions = [
   "Karim Denz",
+  "Chester McCoy",
   "Taliana Martinez",
   "Eddie Toh",
   "Zach Nelson"
 ];
 
 const gunmanOptions = [
-  "Patrick McReary",
+  "Karl Abolaji",
   "Gustavo Mota",
-  "Norm Richards",
-  "Chester McCoy"
+  "Charlie Reed",
+  "Chester McCoy",
+  "Patrick McReary"
 ];
 
 const hackerOptions = [
   "Rickie Lukens",
   "Christian Feltz",
   "Paige Harris",
-  "Avi Schwartzman"
-];
-
-const buyerOptions = [
-  "Low Buyer",
-  "Medium Buyer",
-  "High Buyer"
+  "Avi Schwartzman",
+  "Yohan Blair"
 ];
 
 // -------------------------------
-// REUSABLE FUNCTIONS
+// BIG CON DISGUISES
 // -------------------------------
-function renderCategoryOptions(containerId, list) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+const bigConEntries = [
+  "Gruppe Sechs",
+  "Bugstars",
+  "Maintenance",
+  "Yung Ancestor"
+];
 
-  container.innerHTML = "";
+const bigConExits = [
+  "NOOSE",
+  "Firefighter",
+  "Geen exit outfit"
+];
 
-  list.forEach((option, index) => {
-    const div = document.createElement("div");
-    div.className = "flex items-center gap-2 bg-[#383848] border border-gray-700 px-3 py-2 rounded";
+// -------------------------------
+// ENTRY ROUTES (NON BIG CON)
+// -------------------------------
+const entryRoutes = {
 
-    div.innerHTML = `
-      <input type="checkbox" id="${containerId}-${index}" value="${option}">
-      <label for="${containerId}-${index}">${option}</label>
-    `;
+  "Silent & Sneaky": [
+    "Staff Lobby",
+    "Basement Tunnel",
+    "Roof Terrace"
+  ],
 
-    container.appendChild(div);
-  });
-}
+  "Aggressive": [
+    "Main Door Assault",
+    "Roof Breach",
+    "Underground Tunnel Blast"
+  ]
+};
 
-function toggleAll(containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+// -------------------------------
+// BIG CON ROUTES (linked to disguise)
+// -------------------------------
+const bigConRoutes = {
+  "Gruppe Sechs": "Gruppe Sechs Entry Truck",
+  "Bugstars": "Bugstars Van Entry",
+  "Maintenance": "Maintenance Tunnel Entry",
+  "Yung Ancestor": "VIP Entrance (Yung Ancestor Route)"
+};
 
-  const boxes = container.querySelectorAll("input[type='checkbox']");
-  const allChecked = [...boxes].every(box => box.checked);
+// -------------------------------
+// ALWAYS AVAILABLE PREPS
+// -------------------------------
+const mandatoryPreps = [
+  "Vault Contents",
+  "Getaway Vehicles",
+  "Hacking Device",
+  "Security Passes"
+];
 
-  boxes.forEach(box => box.checked = !allChecked);
-}
+const optionalPreps = [
+  "Duggan Shipments",
+  "Patrol Routes",
+  "Power Drills",
+  "Masks"
+];
 
+// -------------------------------
+// APPROACH SPECIFIC PREPS
+// -------------------------------
+const approachPreps = {
+
+  "Silent & Sneaky": {
+    mandatory: [
+      "Nano Drones",
+      "Vault Lasers"
+    ],
+    optional: [
+      "EMP Device",
+      "Infiltration Suits"
+    ]
+  },
+
+  "The Big Con": {
+    mandatory: [
+      "Exit Disguises"
+    ],
+    optional: []
+  },
+
+  "Aggressive": {
+    mandatory: [
+      "Thermal Charges",
+      "Vault Explosives"
+    ],
+    optional: [
+      "Reinforced Armor",
+      "Tunnel Boring Machine"
+    ]
+  }
+};
+
+// -------------------------------
+// HELPER
+// -------------------------------
 function randomChoice(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
@@ -100,65 +155,104 @@ function randomChoice(array) {
 // RANDOMIZER
 // -------------------------------
 function randomizeGTA() {
+
   const result = [];
 
-  const checkedApproach = document.querySelectorAll("#clothingCategories input:checked");
-  checkedApproach.forEach(cat => {
-    result.push(`Approach: ${cat.value}`);
+  const approach = randomChoice(approachOptions);
+
+  let entryRoute = "";
+  let entryDisguise = null;
+
+  result.push(`<h3><b>🎯 Approach</b></h3>`);
+  result.push(approach);
+  result.push("");
+
+  // ---------------------------
+  // VAULT CONTENT
+  // ---------------------------
+  result.push(`<h3><b>💰 Vault Contents</b></h3>`);
+  result.push(randomChoice(vaultContents));
+  result.push("");
+
+  // ---------------------------
+  // CREW
+  // ---------------------------
+  result.push(`<h3><b>👥 Crew</b></h3>`);
+  result.push(`Driver: ${randomChoice(driverOptions)}`);
+  result.push(`Gunman: ${randomChoice(gunmanOptions)}`);
+  result.push(`Hacker: ${randomChoice(hackerOptions)}`);
+  result.push("");
+
+  // ---------------------------
+  // BIG CON
+  // ---------------------------
+  if (approach === "The Big Con") {
+
+    entryDisguise = randomChoice(bigConEntries);
+    const exitDisguise = randomChoice(bigConExits);
+
+    entryRoute = bigConRoutes[entryDisguise];
+
+    result.push("<h3><b>🎭 Disguises</b></h3>");
+    result.push(`Entry Disguise: ${entryDisguise}`);
+    result.push(`Entry Route: ${entryRoute}`);
+
+    result.push(`Exit: ${
+      exitDisguise === "Geen exit outfit"
+        ? "No outfit change (use current outfit)"
+        : exitDisguise
+    }`);
+
+    result.push("");
+  }
+
+  // ---------------------------
+  // NON BIG CON ROUTE
+  // ---------------------------
+  if (approach !== "The Big Con") {
+
+    entryRoute = randomChoice(entryRoutes[approach]);
+
+    result.push(`<h3><b>🚪 Entry Route</b></h3>`);
+    result.push(entryRoute);
+    result.push("");
+  }
+
+  // ---------------------------
+  // PREPS
+  // ---------------------------
+  result.push(`<h3><b>📋 Verplichte Preps</b></h3>`);
+
+  mandatoryPreps.forEach(prep => {
+    result.push(`✅ ${prep}`);
   });
 
-  const checkedSetup = document.querySelectorAll("#barberCategories input:checked");
-  checkedSetup.forEach(cat => {
-    let item = "";
-
-    switch (cat.value) {
-      case "Vault Content":
-        item = `Vault Content: ${randomChoice(vaultContentOptions)}`;
-        break;
-
-      case "Entry Disguise":
-        item = `Entry Disguise: ${randomChoice(entryDisguises)}`;
-        break;
-
-      case "Security Pass Level":
-        item = `Security Level: ${randomChoice(securityOptions)}`;
-        break;
-
-      case "Drill or Thermite (optional)":
-        item = `Equipment: ${Math.random() > 0.5 ? "Drill" : "Thermite"}`;
-        break;
-    }
-
-    result.push(item);
+  approachPreps[approach].mandatory.forEach(prep => {
+    result.push(`✅ ${prep}`);
   });
 
-  const checkedCrew = document.querySelectorAll("#tattooCategories input:checked");
-  checkedCrew.forEach(cat => {
-    let item = "";
+  if (approach === "The Big Con" && entryDisguise) {
+    result.push(`✅ ${entryDisguise} Gear`);
+  }
 
-    switch (cat.value) {
-      case "Driver":
-        item = `Driver: ${randomChoice(driverOptions)}`;
-        break;
+  result.push("");
 
-      case "Gunman":
-        item = `Gunman: ${randomChoice(gunmanOptions)}`;
-        break;
+  result.push(`<h3><b>📦 Optionele Preps</b></h3>`);
 
-      case "Hacker":
-        item = `Hacker: ${randomChoice(hackerOptions)}`;
-        break;
-
-      case "Buyer Tier":
-        item = `Buyer: ${randomChoice(buyerOptions)}`;
-        break;
-    }
-
-    result.push(item);
+  optionalPreps.forEach(prep => {
+    result.push(Math.random() > 0.5 ? `✔️ ${prep}` : `❌ ${prep}`);
   });
 
-  const output = document.getElementById("output");
-  output.innerHTML = result.join("<br>");
+  approachPreps[approach].optional.forEach(prep => {
+    result.push(Math.random() > 0.5 ? `✔️ ${prep}` : `❌ ${prep}`);
+  });
+
+  result.push("");
+
+  // ---------------------------
+  // OUTPUT
+  // ---------------------------
+  document.getElementById("output").innerHTML = result.join("<br>");
   document.getElementById("result").classList.remove("hidden");
 }
 
@@ -166,23 +260,5 @@ function randomizeGTA() {
 // INIT
 // -------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  renderCategoryOptions("clothingCategories", approachOptions);
-  renderCategoryOptions("barberCategories", [
-    "Vault Content",
-    "Entry Disguise",
-    "Security Pass Level",
-    "Drill or Thermite (optional)"
-  ]);
-  renderCategoryOptions("tattooCategories", [
-    "Driver",
-    "Gunman",
-    "Hacker",
-    "Buyer Tier"
-  ]);
-
-  document.getElementById("selectClothing").addEventListener("click", () => toggleAll("clothingCategories"));
-  document.getElementById("selectBarber").addEventListener("click", () => toggleAll("barberCategories"));
-  document.getElementById("selectTattoos").addEventListener("click", () => toggleAll("tattooCategories"));
-
   document.getElementById("randomizeBtn").addEventListener("click", randomizeGTA);
 });

@@ -85,71 +85,64 @@
   <!-- NAVBAR -->
   <div class="bg-gray-800 px-6 py-3 flex gap-6 text-lg">
     <a href="../index.html" class="hover:underline">War Thunder</a>
-    <a href="gta.html" class="hover:underline">GTA</a>`
+    <a href="gta.html" class="hover:underline">GTA</a>
     <a href="casino.html" class="hover:underline"> GTA Diamond Casino Heist Randomizer</a>
   </div>
 
   <!-- CONTAINER -->
-  <div class="max-w-3xl mx-auto bg-[#2b2b40] mt-8 p-8 rounded-lg shadow-lg">
 
-    <h1 class="text-3xl font-bold text-center mb-10">GTA Randomizer</h1>
+<div class="max-w-3xl mx-auto bg-[#2b2b40] mt-8 p-8 rounded-lg shadow-lg">
 
-    <!-- BLOCK COMPONENT (voor alle shops) -->
-    <!-- KLEDINGWINKEL -->
-    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
-      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
-        <h2 class="text-xl font-semibold">Kledingwinkel</h2>
-        <button id="selectClothing" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
-          Selecteer / Deselecteer alles
-        </button>
-      </div>
+<h1 class="text-3xl font-bold text-center mb-3">
+    🎰 Diamond Casino Heist Randomizer
+</h1>
 
-      <div id="clothingCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
-        <!-- wordt via JS gevuld -->
-      </div>
+<p class="text-center text-gray-400 mb-8">
+    Genereer een volledig willekeurige Diamond Casino Heist challenge.
+</p>
+
+<!-- INFO -->
+<div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
+
+    <div class="bg-[#3a3a4d] px-5 py-3 border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Wat wordt gerandomized?</h2>
     </div>
 
-    <!-- KAPPER -->
-    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
-      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
-        <h2 class="text-xl font-semibold">Kapper</h2>
-        <button id="selectBarber" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
-          Selecteer / Deselecteer alles
-        </button>
-      </div>
+    <div class="p-5 text-gray-300 space-y-2">
 
-      <div id="barberCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
-        <!-- wordt via JS gevuld -->
-      </div>
+        <p>🎯 Approach</p>
+        <p>💰 Vault Contents</p>
+        <p>👥 Crew Members</p>
+        <p>🎭 Entry & Exit Disguises</p>
+        <p>📋 Verplichte Preps</p>
+        <p>📦 Optionele Preps</p>
+
     </div>
 
-    <!-- TATTOO SHOP -->
-    <div class="mb-8 border border-gray-600 rounded-lg overflow-hidden bg-[#2a2a3c]">
-      <div class="bg-[#3a3a4d] px-5 py-3 flex justify-between items-center border-b border-gray-700">
-        <h2 class="text-xl font-semibold">Tattoo Shop</h2>
-        <button id="selectTattoos" class="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 text-sm">
-          Selecteer / Deselecteer alles
-        </button>
-      </div>
+</div>
 
-      <div id="tattooCategories" class="grid grid-cols-2 md:grid-cols-3 gap-3 p-5">
-        <!-- wordt via JS gevuld -->
-      </div>
-    </div>
+<!-- RANDOMIZE BUTTON -->
+<button id="randomizeBtn"
+    class="block mx-auto mt-6 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-lg font-semibold">
 
-    <!-- RANDOMIZE BUTTON -->
-    <button id="randomizeBtn"
-      class="block mx-auto mt-10 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-lg font-semibold">
-      🎲 Randomize
-    </button>
+    🎲 Generate Heist
 
-    <!-- RESULT -->
-    <div id="result" class="hidden mt-10 text-center">
-      <h2 class="text-2xl font-bold mb-2">Resultaat</h2>
-      <p id="output" class="text-lg"></p>
-    </div>
+</button>
 
-  </div>
+<!-- RESULT -->
+<div id="result"
+    class="hidden mt-10 bg-[#2a2a3c] border border-gray-600 rounded-lg p-6">
+
+    <h2 class="text-2xl font-bold mb-4 text-center">
+        Resultaat
+    </h2>
+
+    <div id="output" class="text-lg space-y-2"></div>
+
+</div>
+
+</div>
+
 
   <audio id="bgMusic"></audio>
   <div id="playerBlock">
